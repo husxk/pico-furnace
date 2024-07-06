@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.13)
-
 include(${PICO_SDK_PATH}/external/pico_sdk_import.cmake)
 include(${PICO_EXTRAS_PATH}/external/pico_extras_import.cmake)
 
@@ -8,14 +7,22 @@ project(furnace C CXX ASM)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
+set(SOURCES
+    furnace.c
+    spi.c
+    max318xx.c
+    logger.c
+    shutter.c
+    )
+
+if(CMAKE_C_FLAGS MATCHES " -DCONFIG_FLASH=1 ")
+  list(APPEND SOURCES flash_io.c)
+endif()
+
 pico_sdk_init()
 
 add_executable(${PROJECT_NAME}
-        furnace.c
-        spi.c
-        max318xx.c
-        logger.c
-        shutter.c
+        ${SOURCES}
         )
 target_compile_definitions(furnace PRIVATE
         WIFI_SSID=\"${WIFI_SSID}\"
