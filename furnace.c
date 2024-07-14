@@ -31,7 +31,7 @@
 #define FURNACE_FIRE_PWM_CHANNEL pwm_gpio_to_channel(FURNACE_FIRE_PIN)
 
 #if CONFIG_SHUTTER
-  #include "shutter.c"
+  #include "shutter.h"
 #endif
 
 typedef struct {

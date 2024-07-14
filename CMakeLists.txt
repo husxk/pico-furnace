@@ -15,6 +15,7 @@ add_executable(${PROJECT_NAME}
         spi.c
         max318xx.c
         logger.c
+        shutter.c
         )
 target_compile_definitions(furnace PRIVATE
         WIFI_SSID=\"${WIFI_SSID}\"
